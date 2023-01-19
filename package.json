@@ -1,0 +1,22 @@
+{
+  "name": "fragments-ui",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Fragments UI testing web app",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KHUSHU1501/fragments-ui.git"
+  },
+  "author": "Khushwant Singh Rao <ksrao1@myseneca.ca>",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "parcel": "latest"
+  }
+}
