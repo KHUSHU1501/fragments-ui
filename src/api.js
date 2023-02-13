@@ -11,6 +11,7 @@ const apiUrl = process.env.API_URL || "http://localhost:8080";
 export async function getUserFragments(user) {
   console.log("Requesting user fragments data...");
   try {
+    console.log("Calling GET /v1/fragments");
     const res = await fetch(`${apiUrl}/v1/fragments`, {
       // Generate headers with the proper Authorization bearer token to pass
       headers: user.authorizationHeaders(),
@@ -22,5 +23,28 @@ export async function getUserFragments(user) {
     console.log("Got user fragments data", { data });
   } catch (err) {
     console.error("Unable to call GET /v1/fragment", { err });
+  }
+}
+
+export async function postUserFragment(user, fragment) {
+  console.log("Posting user fragment data...");
+  try {
+    console.log("Calling POST /v1/fragments");
+    const res = await fetch(`${apiUrl}/v1/fragments`, {
+      method: "POST",
+      // Generate headers with the proper Authorization bearer token to pass
+      headers: {
+        Authorization: `Bearer ${user.idToken}`,
+        "Content-Type": "text/plain",
+      },
+      body: `${fragment}`,
+    });
+    if (!res.ok) {
+      throw new Error(`${res.status} ${res.statusText}`);
+    }
+    const data = await res.json();
+    console.log("Posted user fragment data", { data });
+  } catch (err) {
+    console.error("Unable to call POST /v1/fragment", { err });
   }
 }
