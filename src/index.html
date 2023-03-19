@@ -15,14 +15,40 @@
     </section>
     <section hidden id="user">
       <h2>Hello <span class="username"></span>!</h2>
+      <br /><br />
+
+      <h3>Add a new Fragment</h3>
+
+      <label>Fragment Type:</label>
+      <select class="ui fluid dropdown" id="fragmentType">
+        <option value="text/plain">text/plain</option>
+        <option value="text/plain; charset=utf-8">
+          text/plain; charset=utf-8
+        </option>
+        <option value="text/markdown">text/markdown</option>
+        <option value="text/html">text/html</option>
+        <option value="application/json">application/json</option>
+        <option value="application/json; charset=utf-8">
+          application/json; charset=utf-8
+        </option>
+      </select>
 
       <label for="text-submission">
         Please submit the text for the fragment here:
       </label>
+
       <input type="input" id="fragmentInput" name="fragmentText" />
       <br />
       <br />
       <button id="post">Post Fragment</button>
+      <br />
+      <br />
+
+      <h3>Get all fragments:</h3>
+
+      <table class="fragmentList"></table>
+
+      <button id="getFragmentBtn">Get Fragments</button>
     </section>
   </body>
 </html>

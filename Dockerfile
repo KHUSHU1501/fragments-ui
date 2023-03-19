@@ -1,48 +1,30 @@
 ####################################################################################################
-# Stage 1: Install dependencies
+# Stage 1: Install dependencies & Build the app
 ####################################################################################################
-
-FROM node:18.13.0-bullseye@sha256:d871edd5b68105ebcbfcde3fe8c79d24cbdbb30430d9bd6251c57c56c7bd7646 AS dependencies
-
-LABEL maintainer="Khushwant Singh Rao <ksrao1@myseneca.ca>"
-LABEL description="Fragments UI testing web app"
-
-# Reduce npm spam when installing within Docker
-# https://docs.npmjs.com/cli/v8/using-npm/config#loglevel
-ENV NPM_CONFIG_LOGLEVEL=warn
-# Disable colour when run inside Docker
-# https://docs.npmjs.com/cli/v8/using-npm/config#color
-ENV NPM_CONFIG_COLOR=false
-
-# Set the NODE_ENV to production
-ENV NODE_ENV=production
-
-# Use /app as our working directory
-WORKDIR /app
-
-# Copy our package.json/package-lock.json in
-COPY package* .
-
-# Install node dependencies defined in package.json and package-lock.json
-RUN npm ci --only=production
-
-####################################################################################################
-# Stage 2: Build and serve the app
-####################################################################################################
-
 FROM node:18.13.0-bullseye@sha256:d871edd5b68105ebcbfcde3fe8c79d24cbdbb30430d9bd6251c57c56c7bd7646 AS build
 
-# Use /app as our working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy generated node_modules from dependencies stage
-COPY --from=dependencies /app/ /app/
+# Copy the package files
+COPY package*.json ./
 
-# Copy everything else into /app
+# Install dependencies
+RUN npm ci
+
+# Copy the rest of the files
 COPY . .
 
-# Run the server
-CMD npm run serve
+# Build the app
+RUN npm run build
 
-# We default to use port 1234
-EXPOSE 1234
+####################################################################################################
+# Stage 2: Serve the app with Nginx
+####################################################################################################
+FROM nginx:1.22.1-alpine@sha256:a9e4fce28ad7cc7de45772686a22dbeaeeb54758b16f25bf8f64ce33f3bff636
+
+# Copy the built app from the previous stage
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
