@@ -1,4 +1,55 @@
 h1 {
-  color: hotpink;
+  color: rgb(255, 0, 0);
+  font-family: fantasy;
+}
+
+span {
+  color: rgb(0, 0, 255);
   font-family: cursive;
+}
+
+#login {
+  color: rgb(0, 80, 0);
+  font-family: monospace;
+}
+
+#logout {
+  color: rgb(150, 0, 0);
+  font-family: monospace;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+body {
+  background-color: #a6a4c9;
+}
+
+footer {
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+}
+
+#user {
+  padding: 10px;
+  text-align: justify;
+  font-size: 12px;
 }

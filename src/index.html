@@ -3,7 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <title>Fragments UI</title>
-    <link rel="stylesheet" href="https://unpkg.com/bamboo.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+      integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles.css" />
     <script type="module" src="./app.js"></script>
   </head>
   <body>
@@ -15,40 +21,60 @@
     </section>
     <section hidden id="user">
       <h2>Hello <span class="username"></span>!</h2>
-      <br /><br />
 
-      <h3>Add a new Fragment</h3>
-
-      <label>Fragment Type:</label>
-      <select class="ui fluid dropdown" id="fragmentType">
+      <h3>Post a Fragment</h3>
+      <label for="type">Choose a type:</label>
+      <select name="type" id="type">
         <option value="text/plain">text/plain</option>
-        <option value="text/plain; charset=utf-8">
-          text/plain; charset=utf-8
-        </option>
         <option value="text/markdown">text/markdown</option>
         <option value="text/html">text/html</option>
-        <option value="application/json">application/json</option>
-        <option value="application/json; charset=utf-8">
-          application/json; charset=utf-8
-        </option>
+        <option value="application/json">application/JSON</option>
+        <option value="image/png">image/png</option>
+        <option value="image/jpeg">image/jpeg</option>
+        <option value="image/webp">image/webp</option>
+        <option value="image/gif">image/gif</option>
       </select>
-
-      <label for="text-submission">
-        Please submit the text for the fragment here:
-      </label>
-
-      <input type="input" id="fragmentInput" name="fragmentText" />
       <br />
       <br />
-      <button id="post">Post Fragment</button>
+      <label for="content">Enter Data:</label>
+      <input type="text" id="content" name="content" /><br /><br />
+      <label for="file" id="filelable" name="file">File Upload</label>
+      <input type="file" id="file" name="file" /> <br /><br />
+      <button id="post">POST</button>
       <br />
       <br />
-
-      <h3>Get all fragments:</h3>
-
+      <br />
+      <h3>Get a Fragment</h3>
+      <label for="get_id">Enter ID For Get:</label>
+      <input type="text" id="get_id" name="get_id" /><br /><br />
+      <button id="getbyid">GET BY ID</button>
+      <button id="getInfo">GET BY ID INFO</button>
+      <button id="getall">GET ALL</button>
+      <br />
+      <br />
+      <code id="content-type" name="content-type"></code>
+      <br />
+      <br />
       <table class="fragmentList"></table>
-
-      <button id="getFragmentBtn">Get Fragments</button>
+      <br />
+      <br />
+      <br />
+      <h3>Delete a Fragment</h3>
+      <label for="fragments_id">Enter ID For Delete:</label>
+      <input type="text" id="fragments_id" name="fragments_id" /><br /><br />
+      <button id="delete">Delete</button> <br />
+      <br />
+      <br />
+      <br />
+      <h3>Update a Fragment</h3>
+      <label for="fragment_id">Enter ID For update:</label>
+      <input type="text" id="fragment_id" name="fragment_id" /><br /><br />
+      <label for="upd_content">Enter Data:</label>
+      <input type="text" id="upd_content" name="upd_content" /><br /><br />
+      <button id="update">PUT</button>
     </section>
+    <br />
+    <br />
+    <footer>&copy; 2023 Khushwant Singh Rao. All rights reserved.</footer>
   </body>
 </html>
